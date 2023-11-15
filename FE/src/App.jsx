@@ -2,11 +2,15 @@ import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import path from './utils/path'
 import { PublicLayout, Home, AboutUs, OurAgents, Properties, Search } from './pages/public'
+import { Modal } from './components'
+import { useAppStore } from './store/useAppStore'
 
 function App() {
-
+  const {isShowModal, contentModal} = useAppStore()
+  console.log({isShowModal, contentModal});
   return (
-    <div className=''>
+    <>
+     { isShowModal && <Modal/>}
       <Routes>
           <Route path={path.PUBLIC_LAYOUT} element={<PublicLayout />}>
               <Route path={path.HOME} element={<Home />}/>
@@ -16,7 +20,7 @@ function App() {
               <Route path={path.SEARCH} element={<Search />}/>
           </Route>
       </Routes>
-    </div>
+    </>
   )
 }
 
