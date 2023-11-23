@@ -1,4 +1,4 @@
-import { useAppStore } from '@/store/useAppStore'
+import { useAppStore } from '~/store/useAppStore'
 import React from 'react'
 
 const Modal = () => {

@@ -1,8 +1,8 @@
-import { Navigation, Topheader } from '@/components'
+import { Navigation, Topheader } from '~/components'
 import { Outlet } from 'react-router-dom'
 import React from 'react'
 import clsx from 'clsx'
-import withRouter from '@/hocs/withRouter'
+import withRouter from '~/hocs/withRouter'
 
 const PublicLayout = () => {
   return <main>

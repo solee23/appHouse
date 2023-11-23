@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button, Login } from '..'
-import navigations from '@/utils/constant'
+import navigations from '~/utils/constant'
 import { NavLink, Link } from 'react-router-dom'
 import clsx from 'clsx'
 import {twMerge} from 'tailwind-merge'
-import withRouter from '@/hocs/withRouter'
-import { useUserStore } from '@/store/useUserStore'
-import path from '@/utils/path'
-import { useAppStore } from '@/store/useAppStore'
+import withRouter from '~/hocs/withRouter'
+import { useUserStore } from '~/store/useUserStore'
+import path from '~/utils/path'
+import { useAppStore } from '~/store/useAppStore'
 
 const Navigation = ({location, navigation}) => {
   const {token} = useUserStore();

@@ -3,7 +3,7 @@ import { HiOutlineMailOpen } from 'react-icons/hi'
 import { BsTelephoneInboundFill, BsFacebook, BsInstagram, BsYoutube } from 'react-icons/bs'
 import clsx from 'clsx'
 import {twMerge} from 'tailwind-merge'
-import withRouter from '@/hocs/withRouter'
+import withRouter from '~/hocs/withRouter'
 
 
 
@@ -16,7 +16,7 @@ const Topheader = ( {location}) => {
             <HiOutlineMailOpen/>
             <span className="flex gap-3">
                 <span>Email của chúng tôi:</span>
-                <span>lspau95@gmail.com</span>
+                <span>lspau95~gmail.com</span>
             </span>
         </span>
         <div className="flex items-center gap-6">

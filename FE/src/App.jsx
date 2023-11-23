@@ -6,11 +6,10 @@ import { Modal } from './components'
 import { useAppStore } from './store/useAppStore'
 
 function App() {
-  const {isShowModal, contentModal} = useAppStore()
-  console.log({isShowModal, contentModal});
+  const {isShowModal} = useAppStore()
   return (
     <>
-     { isShowModal && <Modal/>}
+     {isShowModal && <Modal/>}
       <Routes>
           <Route path={path.PUBLIC_LAYOUT} element={<PublicLayout />}>
               <Route path={path.HOME} element={<Home />}/>
