@@ -12,7 +12,7 @@ const register = asyncHandler( async(req,res) => {
     });
     return res.json({
         success: response[1],
-        mes: response[1] ? 'Register is successfully.' : 'Phone number already had exists.',
+        message: response[1] ? 'Đăng ký tài khoản thành công.' : 'Số điện thoại đã tồn tại.',
     });
 });
 
@@ -23,12 +23,11 @@ const login = asyncHandler( async(req,res) => {
         defaults: req.body
     });
     const comparePass = bcrypt.compareSync(password, user.password)
-    if(!user || ! comparePass) throwErrorWithStatus(401, 'Login failed.', res, next);
+    if(!user || !comparePass) throwErrorWithStatus(401, 'Đăng nhập thất bại.', res, next);
     const token = jwt.sign({uid: user.id, role: user.role}, process.env.JWT_SECRET, { expiresIn: '7d'})
-
     return res.json({
         success: true,
-        message: 'Login is successfully.',
+        message: 'Đăng nhập thành công.',
         accessToken: token
     });
 });

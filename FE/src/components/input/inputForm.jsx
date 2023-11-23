@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 
 const inputForm = ({style = 'form-input', containerClassname, label, id, type='text', register, errors={} , inputClassname, validate, placeholder}) => {
   return (
-    <div className={twMerge(clsx('flex flex-col gap-2'))}>
+    <div className={twMerge(clsx('flex flex-col gap-2'),containerClassname)}>
         {label && <label className="font-medium text-main-700" htmlFor={id} >{label}</label>}
         <input type={type} id={id} className={twMerge(clsx(type, 'placeholder:text-sm', inputClassname))} {...register(id,validate)} placeholder={placeholder}/>
         {errors[id] && <small className="text-red-600">{errors[id]?.message}</small>}
