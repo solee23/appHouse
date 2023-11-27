@@ -11,6 +11,7 @@ import {apiRegister, apiLogin} from '~/apis/auth'
 
 const Login = () => {
   const [variant, setVariant] = useState('LOGIN');
+  const [isLoading, setIsLoading] = useState(false)
   const {setModal} = useAppStore();
   useEffect(() => {
     reset()
@@ -18,7 +19,9 @@ const Login = () => {
   const { register, formState: { errors }, handleSubmit, reset } = useForm();
   const onSubmit = async(data) => {
     if(variant === 'REGISTER'){
+      setIsLoading(true)
       const response = await apiRegister(data)
+      setIsLoading(false)
       console.log(response);
       if(response.success){
         Swal.fire({
@@ -36,7 +39,9 @@ const Login = () => {
     }
     if(variant === 'LOGIN'){
       const {name, role, ...payload} = data
+      setIsLoading(true)
       const response = await apiLogin(payload)
+      setIsLoading(false)
       if(response.success){
         toast.success(response.message)
         setModal(false,null)
@@ -66,7 +71,13 @@ const Login = () => {
            }} errors={errors} placeholder='Vui lòng nhập số điện thoại...' />
         <InputForm label='Mật khẩu:' inputClassname="rounded-md" register={register} id='password' type='password' validate={{ required: 'Không được bỏ trống.' }} errors={errors} placeholder='Vui lòng nhập mật khẩu...' />
         {variant === 'REGISTER' && <InputRadio label='Loại tài khoản:' register={register} id='role' validate={{ required: 'Không được bỏ trống.' }} errors={errors} placeholder='Vui lòng chọn...' options={[{ label: 'Thuê', value: 'USER' }, { label: 'Cho thuê', value: 'AGENT' }]} />}
-        <Button handleClick={handleSubmit(onSubmit)} className="py-2 my-6 hover:bg-main-800">{variant === 'LOGIN' ? 'Đăng nhập' : 'Đăng ký'}</Button>
+        <Button 
+        handleClick={handleSubmit(onSubmit)} 
+        className="py-2 my-6 hover:bg-main-800"
+        disabled={isLoading}
+        >
+          {variant === 'LOGIN' ? 'Đăng nhập' : 'Đăng ký'}
+        </Button>
         <span className="cursor-pointer text-main-500 hover:underline hover:text-main-800 w-full text-center">Quên mật khẩu?</span>
       </form>
     </div>
