@@ -1,14 +1,20 @@
 import { create } from "zustand";
 import {persist, createJSONStorage} from 'zustand/middleware'
+import { apiDetailUser } from '~/apis/user'
 export const useUserStore = create(persist(
     (set ,get) => ({
         token: null,
         current: null,
-        login: '1231322'
-        
+        setToken: (token) => set((state) => ({token})),
+        getDetail: async() => {
+            const response = await apiDetailUser() 
+            if(response.success) return set(() => ({
+                current: response.data
+            }))
+        }
     }),
     {
-        name: 'key',
+        name: 'token',
         storage: createJSONStorage(() => localStorage),
         partialize: (state) =>
         Object.fromEntries(

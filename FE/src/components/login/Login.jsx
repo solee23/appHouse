@@ -7,12 +7,14 @@ import { toast } from 'react-toastify'
 import { useAppStore } from '~/store/useAppStore'
 
 import {apiRegister, apiLogin} from '~/apis/auth'
+import { useUserStore } from '~/store/useUserStore'
 
 
 const Login = () => {
   const [variant, setVariant] = useState('LOGIN');
   const [isLoading, setIsLoading] = useState(false)
   const {setModal} = useAppStore();
+  const {token, setToken} = useUserStore();
   useEffect(() => {
     reset()
   }, [variant])
@@ -22,7 +24,6 @@ const Login = () => {
       setIsLoading(true)
       const response = await apiRegister(data)
       setIsLoading(false)
-      console.log(response);
       if(response.success){
         Swal.fire({
           icon: 'success',
@@ -44,6 +45,7 @@ const Login = () => {
       setIsLoading(false)
       if(response.success){
         toast.success(response.message)
+        setToken(response.accessToken)
         setModal(false,null)
       }else{
         toast.error(response.message)

@@ -6,7 +6,13 @@ const instance = axios.create({
 
   // Add a request interceptor
   instance.interceptors.request.use(function (config) {
-    // Do something before request is sent
+    const token = window.localStorage.getItem('token')
+    if(token){
+      const parseToken = JSON.parse(token)
+      if(parseToken.state?.token) config.headers = {
+        Authorization: `Bearer ${parseToken.state.token}`
+      }
+    }
     return config;
   }, function (error) {
     // Do something with request error
