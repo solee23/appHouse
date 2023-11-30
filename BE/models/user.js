@@ -18,10 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue('password', bcrypt.hashSync(value,salt))
       }
     },
-    role: {
-      type: DataTypes.ENUM,
-      values: ['ADMIN', 'AGENT', 'USER']
-    },
+    roleCode: DataTypes.STRING,
     avt: DataTypes.STRING
   }, {
     sequelize,

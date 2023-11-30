@@ -74,7 +74,7 @@ const Login = () => {
         <InputForm label='Mật khẩu:' inputClassname="rounded-md" register={register} id='password' type='password' validate={{ required: 'Không được bỏ trống.' }} errors={errors} placeholder='Vui lòng nhập mật khẩu...' />
         {variant === 'REGISTER' && <InputRadio label='Loại tài khoản:' register={register} id='role' validate={{ required: 'Không được bỏ trống.' }} errors={errors} placeholder='Vui lòng chọn...' options={[{ label: 'Thuê', value: 'USER' }, { label: 'Cho thuê', value: 'AGENT' }]} />}
         <Button 
-        handleClick={handleSubmit(onSubmit)} 
+        handleClick={ (onSubmit)} 
         className="py-2 my-6 hover:bg-main-800"
         disabled={isLoading}
         >
