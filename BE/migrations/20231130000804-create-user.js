@@ -35,7 +35,7 @@ module.exports = {
           model: "Roles",
           key: "code"
         },
-        allowNull: false
+        defaultValue: 'Role7'
       },
       avt: {
         type: Sequelize.STRING

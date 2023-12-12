@@ -1,14 +1,14 @@
 const router = require('express').Router();
 const Joi = require('joi');
 const ctrls = require('../controllers/auth');
-const { stringReq, numberReq } = require('../middlewares/joiSchema');
+const { stringReq, numberReq, string } = require('../middlewares/joiSchema');
 const validateDTO = require('../middlewares/validation');
 
 router.post("/register", validateDTO(Joi.object({
     name: stringReq,
     phone: numberReq,
     password: stringReq,
-    role: stringReq
+    roleCode: string
 })), ctrls.register);
 
 router.post("/login", validateDTO(Joi.object({

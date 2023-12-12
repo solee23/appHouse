@@ -1,3 +1,4 @@
+const db = require("../models")
 const { throwErrorWithStatus } = require("./errorHandler")
 const jwt = require('jsonwebtoken')
 
@@ -18,6 +19,33 @@ const verifyToken = (req, res, next) => {
     })
 }
 
+const isAdim = async(req, res, next) => {
+    const {roleCode} = req.user
+    if(roleCode !== 'Role1'){
+        return throwErrorWithStatus(401, 'Không có quyền truy cập.', res, next)
+    }
+    next()
+}
+
+const isAgent = async(req, res, next) => {
+    const {roleCode} = req.user
+    if(roleCode === 'Role7'){
+        return throwErrorWithStatus(401, 'Không có quyền truy cập.', res, next)
+    }
+    next()
+}
+
+const isOwner = async(req, res, next) => {
+    const {roleCode} = req.user
+    if(roleCode === 'Role5' || roleCode === 'Role7'){
+        return throwErrorWithStatus(401, 'Không có quyền truy cập.', res, next)
+    }
+    next()
+}
+
 module.exports = {
-    verifyToken
+    verifyToken,
+    isAgent,
+    isAdim,
+    isOwner
 }

@@ -24,7 +24,7 @@ const login = asyncHandler( async(req,res) => {
     });
     const comparePass = bcrypt.compareSync(password, user.password)
     if(!user || !comparePass) throwErrorWithStatus(401, 'Đăng nhập thất bại.', res, next);
-    const token = jwt.sign({uid: user.id, role: user.role}, process.env.JWT_SECRET, { expiresIn: '7d'})
+    const token = jwt.sign({uid: user.id, roleCode: user.roleCode}, process.env.JWT_SECRET, { expiresIn: '7d'})
     return res.json({
         success: true,
         message: 'Đăng nhập thành công.',
